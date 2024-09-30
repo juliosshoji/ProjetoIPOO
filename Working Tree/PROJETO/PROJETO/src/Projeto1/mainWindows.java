@@ -22,7 +22,7 @@ public class mainWindows {
         // Cria o frame principal
         JFrame frame = new JFrame("SI400 - Programação Orientada a Objetos II ");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 400); // Define o tamanho da janela
+        frame.setSize(1280, 720); // Define o tamanho da janela
         frame.setLayout(new BorderLayout());
 
         // Definir a cor de fundo do frame
@@ -61,8 +61,12 @@ public class mainWindows {
         
         //Chama o ouvinte que sai do programa com ação de clique
         menuSair.addMouseListener(new SairMouseListener());
-        //Registra clique do mouse e toma acao
-        menuConfiguracao.addMouseListener(new ConfiguracaoMouseListener());
+        
+        //Config botao Configuracao
+        JButton ConfigPanel = new JButton();
+        ConfigPanel.addActionListener(new ConfiguracaoMouseListener());
+        menuConfiguracao.add(ConfigPanel);
+        
         // Exibe o frame
         frame.setVisible(true);
     }
