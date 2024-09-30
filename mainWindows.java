@@ -58,10 +58,11 @@ public class mainWindows {
         menuConfiguracao.addMouseListener(new MenuHoverListener());
         menuAjuda.addMouseListener(new MenuHoverListener());
         menuSair.addMouseListener(new MenuHoverListener());
-
+        
         //Chama o ouvinte que sai do programa com ação de clique
         menuSair.addMouseListener(new SairMouseListener());
-
+        //Registra clique do mouse e toma acao
+        menuConfiguracao.addMouseListener(new ConfiguracaoMouseListener());
         // Exibe o frame
         frame.setVisible(true);
     }
