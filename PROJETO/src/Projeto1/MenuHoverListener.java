@@ -23,15 +23,15 @@ public class MenuHoverListener extends MouseAdapter {
     @Override
     public void mouseEntered(MouseEvent e) {
         JMenu menu = (JMenu) e.getSource();
-        originalColor = menu.getBackground();  // Armazena a cor original
-        menu.setOpaque(true);  // Torna o fundo do menu opaco para a cor ser visível
-        menu.setBackground(Color.GRAY);  // Muda a cor ao passar o mouse
+        originalColor = menu.getBackground();  
+        menu.setOpaque(true);  
+        menu.setBackground(Color.GRAY); 
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
         JMenu menu = (JMenu) e.getSource();
-        menu.setBackground(originalColor);  // Restaura a cor original
+        menu.setBackground(originalColor);  
     }
 
 }
