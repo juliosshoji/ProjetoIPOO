@@ -52,15 +52,15 @@ public class ConfiguracaoMouseListener implements ActionListener {
             switch (speed) {
                 case "Lento":
                 	this.backgroundanimator.setAnimationSpeedString("Lento");
-                    this.backgroundanimator.setSpeed(25);
+                	this.backgroundanimator.setSpeed(80);
                     break;
                 case "Médio":
                 	this.backgroundanimator.setAnimationSpeedString("Médio");
-                    this.backgroundanimator.setSpeed(50);
+                	this.backgroundanimator.setSpeed(40);
                     break;
                 case "Rápido":
                 	this.backgroundanimator.setAnimationSpeedString("Rápido");
-                    this.backgroundanimator.setSpeed(100);
+                	this.backgroundanimator.setSpeed(20);
                     break;
             }
         }
@@ -79,12 +79,15 @@ public class ConfiguracaoMouseListener implements ActionListener {
 	}
 	
 	public void showPatternMenu(ActionEvent e) {
-		String[] patterns = {"Gradiente", "Transição de Cores", "Cor Sólida"};
+		String[] patterns = {"Gradiente", "Transição de Cores", "Padrão Geométrico", "Linhas Aleatórias", "Cor Sólida"};
         String pattern = (String) JOptionPane.showInputDialog((JMenuItem) e.getSource(), "Escolha um padrão:", 
                 "Configurar Padrão", JOptionPane.QUESTION_MESSAGE, null, patterns, this.backgroundanimator.getCurrentPattern());
         if (pattern != null) {
         	this.backgroundanimator.setPattern(pattern);
 	        	switch (pattern) {
+	        	case "Padrão Geométrico":
+	        		showColorMenu(e);
+	        		break;
 	            case "Gradiente":
 	            	showColorMenu(e);
 	                break;
