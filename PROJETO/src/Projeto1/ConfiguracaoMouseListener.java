@@ -47,17 +47,20 @@ public class ConfiguracaoMouseListener implements ActionListener {
 	public void showSpeedMenu(ActionEvent e) {
 		String[] speeds = {"Lento", "Médio", "Rápido"};
         String speed = (String) JOptionPane.showInputDialog((JMenuItem)e.getSource(), "Escolha a velocidade:", 
-                "Configurar Velocidade", JOptionPane.QUESTION_MESSAGE, null, speeds, speeds[1]);
+                "Configurar Velocidade", JOptionPane.QUESTION_MESSAGE, null, speeds, this.backgroundanimator.getAnimationSpeedString());
         if (speed != null) {
             switch (speed) {
                 case "Lento":
-                    this.backgroundanimator.setSpeed(100);
+                	this.backgroundanimator.setAnimationSpeedString("Lento");
+                    this.backgroundanimator.setSpeed(25);
                     break;
                 case "Médio":
+                	this.backgroundanimator.setAnimationSpeedString("Médio");
                     this.backgroundanimator.setSpeed(50);
                     break;
                 case "Rápido":
-                    this.backgroundanimator.setSpeed(20);
+                	this.backgroundanimator.setAnimationSpeedString("Rápido");
+                    this.backgroundanimator.setSpeed(100);
                     break;
             }
         }
@@ -76,9 +79,9 @@ public class ConfiguracaoMouseListener implements ActionListener {
 	}
 	
 	public void showPatternMenu(ActionEvent e) {
-		String[] patterns = {"Gradiente", "Transição de Cores", "Padrão Imagem", "Cor Sólida"};
+		String[] patterns = {"Gradiente", "Transição de Cores", "Cor Sólida"};
         String pattern = (String) JOptionPane.showInputDialog((JMenuItem) e.getSource(), "Escolha um padrão:", 
-                "Configurar Padrão", JOptionPane.QUESTION_MESSAGE, null, patterns, patterns[0]);
+                "Configurar Padrão", JOptionPane.QUESTION_MESSAGE, null, patterns, this.backgroundanimator.getCurrentPattern());
         if (pattern != null) {
         	this.backgroundanimator.setPattern(pattern);
 	        	switch (pattern) {

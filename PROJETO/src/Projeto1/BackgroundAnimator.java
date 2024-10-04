@@ -16,8 +16,6 @@ package Projeto1;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
@@ -30,10 +28,19 @@ public class BackgroundAnimator implements Runnable {
     private Color staticColor1 = Color.PINK; 
     private Color staticColor2 = Color.PINK; 
     private boolean running = true; 
+    private String animationSpeedString = "Médio";
     
     public BackgroundAnimator(JPanel panel) {
         this.panel = panel;
         startBackgroundAnimation();
+    }
+    
+    public void setAnimationSpeedString(String speed) {
+    	this.animationSpeedString = speed;
+    }
+    
+    public String getAnimationSpeedString() {
+    	return this.animationSpeedString;
     }
     
     public void setStaticColor1(Color color1) {
@@ -94,9 +101,6 @@ public class BackgroundAnimator implements Runnable {
             case "Transição de Cores":
                 animateColorTransition(g2d);
                 break;
-            case "Padrão Imagem":
-                animateImagePattern(g2d);
-                break;
             case "Cor Sólida":
                 drawSolidColor(g2d);
                 break;
@@ -123,11 +127,6 @@ public class BackgroundAnimator implements Runnable {
         if (hue > 1) {
             hue = 0;
         }
-    }
-
-    private void animateImagePattern(Graphics2D g2d) {
-        Image image = Toolkit.getDefaultToolkit().getImage("imagem.png");
-        g2d.drawImage(image, 0, 0, panel.getWidth(), panel.getHeight(), panel);
     }
 
     private void drawSolidColor(Graphics2D g2d) {
