@@ -31,103 +31,103 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 public class MainWindows {
-	
-    private JFrame frame;
-    private JTextArea textArea;
-    private JPanel textPanel;
-    protected BackgroundAnimator backgroundanimator;
 
-    public void createAndShowGUI() {
-        frame = new JFrame("SI400 - Programação Orientada a Objetos II");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1280, 720);
-        frame.setLayout(new BorderLayout());
+	private JFrame frame;
+	private JTextArea textArea;
+	private JPanel textPanel;
+	protected BackgroundAnimator backgroundanimator;
 
-        frame.getContentPane().setBackground(Color.PINK);
-        
-        createTextArea();
-        createMenuBar();
-        createStatusBar();
-        frame.setVisible(true);
-    }
+	public void createAndShowGUI() {
+		frame = new JFrame("SI400 - Programação Orientada a Objetos II");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(1280, 720);
+		frame.setLayout(new BorderLayout());
 
-    private void createMenuBar() {
-        JMenuBar menuBar = new JMenuBar();
+		frame.getContentPane().setBackground(Color.PINK);
 
-        JMenu menuArquivo = new JMenu("Arquivo");
-        JMenu menuConfiguracao = new JMenu("Configuração");
-        JMenu menuAjuda = new JMenu("Ajuda");
+		createTextArea();
+		createMenuBar();
+		createStatusBar();
+		frame.setVisible(true);
+	}
 
-        menuBar.add(menuArquivo);
-        menuBar.add(menuConfiguracao);
-        menuBar.add(menuAjuda);
+	private void createMenuBar() {
+		JMenuBar menuBar = new JMenuBar();
 
-        addMenuItems(menuArquivo, menuAjuda, menuConfiguracao);
+		JMenu menuArquivo = new JMenu("Arquivo");
+		JMenu menuConfiguracao = new JMenu("Configuração");
+		JMenu menuAjuda = new JMenu("Ajuda");
 
-        frame.setJMenuBar(menuBar);
-    }
+		menuBar.add(menuArquivo);
+		menuBar.add(menuConfiguracao);
+		menuBar.add(menuAjuda);
 
-    private void addMenuItems(JMenu menuArquivo, JMenu menuAjuda, JMenu menuConfiguracao) {
-        JMenuItem abrirArquivo = new JMenuItem("Abrir arquivo");
-        JMenuItem fecharArquivo = new JMenuItem("Fechar arquivo");
-        JMenuItem sair = new JMenuItem("Sair");
+		addMenuItems(menuArquivo, menuAjuda, menuConfiguracao);
 
-        abrirArquivo.addActionListener(new OpenFileListener(frame, textArea));
-        fecharArquivo.addActionListener(e -> textArea.setText(""));
-        sair.addActionListener(new ExitListener(frame));
+		frame.setJMenuBar(menuBar);
+	}
 
-        menuArquivo.add(abrirArquivo);
-        menuArquivo.add(fecharArquivo);
-        menuArquivo.addSeparator();
-        menuArquivo.add(sair);
-        
-    	JMenuItem speedItem = new JMenuItem("Configurar Velocidade");
+	private void addMenuItems(JMenu menuArquivo, JMenu menuAjuda, JMenu menuConfiguracao) {
+		JMenuItem abrirArquivo = new JMenuItem("Abrir arquivo");
+		JMenuItem fecharArquivo = new JMenuItem("Fechar arquivo");
+		JMenuItem sair = new JMenuItem("Sair");
+
+		abrirArquivo.addActionListener(new OpenFileListener(frame, textArea));
+		fecharArquivo.addActionListener(e -> textArea.setText(""));
+		sair.addActionListener(new ExitListener(frame));
+
+		menuArquivo.add(abrirArquivo);
+		menuArquivo.add(fecharArquivo);
+		menuArquivo.addSeparator();
+		menuArquivo.add(sair);
+
+		JMenuItem speedItem = new JMenuItem("Configurar Velocidade");
 		JMenuItem colorItem = new JMenuItem("Configurar Cor");
 		JMenuItem patternItem = new JMenuItem("Configurar Padrão");
-		
+
 		speedItem.addActionListener(new ConfiguracaoMouseListener(this.backgroundanimator));
 		colorItem.addActionListener(new ConfiguracaoMouseListener(this.backgroundanimator));
 		patternItem.addActionListener(new ConfiguracaoMouseListener(this.backgroundanimator));
-		
+
 		menuConfiguracao.add(speedItem);
 		menuConfiguracao.add(colorItem);
 		menuConfiguracao.add(patternItem);
-    }
+	}
 
-    private void createTextArea() {
-        textArea = new JTextArea();
-        textArea.setLineWrap(true);
-        textArea.setMargin(new Insets(10, 15, 10, 15));
-        textArea.setBackground(Color.WHITE);
-        
-        this.backgroundanimator = new BackgroundAnimator(
-	        new JPanel() {;
-		    	private static final long serialVersionUID = 1L;
-				@Override
-		    	protected void paintComponent(Graphics g) {
-		    		super.paintComponent(g);
-		    		Graphics2D g2d = (Graphics2D) g;
-		    		
-		    		backgroundanimator.drawBackground(g2d);
-		    	}
-		    }
-	     );
-        
-        this.textPanel = this.backgroundanimator.getPanel();
-       
-        textPanel.setLayout(new BorderLayout());
-        
-        this.backgroundanimator.startBackgroundAnimation();
-        
-        textPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        textPanel.add(new JScrollPane(textArea), BorderLayout.CENTER);
-        
-        frame.add(textPanel, BorderLayout.CENTER);
-    }
+	private void createTextArea() {
+		textArea = new JTextArea();
+		textArea.setLineWrap(true);
+		textArea.setMargin(new Insets(10, 15, 10, 15));
+		textArea.setBackground(Color.WHITE);
 
-    private void createStatusBar() {
-        JLabel statusBar = new JLabel("PROJETO 1 - GUI");
-        statusBar.setHorizontalAlignment(SwingConstants.CENTER);
-        frame.add(statusBar, BorderLayout.SOUTH);
-    }
+		this.backgroundanimator = new BackgroundAnimator(new JPanel() {
+			;
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				Graphics2D g2d = (Graphics2D) g;
+
+				backgroundanimator.drawBackground(g2d);
+			}
+		});
+
+		this.textPanel = this.backgroundanimator.getPanel();
+
+		textPanel.setLayout(new BorderLayout());
+
+		this.backgroundanimator.startBackgroundAnimation();
+
+		textPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+		textPanel.add(new JScrollPane(textArea), BorderLayout.CENTER);
+
+		frame.add(textPanel, BorderLayout.CENTER);
+	}
+
+	private void createStatusBar() {
+		JLabel statusBar = new JLabel("PROJETO 1 - GUI");
+		statusBar.setHorizontalAlignment(SwingConstants.CENTER);
+		frame.add(statusBar, BorderLayout.SOUTH);
+	}
 }

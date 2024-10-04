@@ -18,20 +18,20 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 public class MenuHoverListener extends MouseAdapter {
-    private Color originalColor;
+	private Color originalColor;
 
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        JMenu menu = (JMenu) e.getSource();
-        originalColor = menu.getBackground();  
-        menu.setOpaque(true);  
-        menu.setBackground(Color.GRAY); 
-    }
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		JMenu menu = (JMenu) e.getSource();
+		originalColor = menu.getBackground();
+		menu.setOpaque(true);
+		menu.setBackground(Color.GRAY);
+	}
 
-    @Override
-    public void mouseExited(MouseEvent e) {
-        JMenu menu = (JMenu) e.getSource();
-        menu.setBackground(originalColor);  
-    }
+	@Override
+	public void mouseExited(MouseEvent e) {
+		JMenu menu = (JMenu) e.getSource();
+		menu.setBackground(originalColor);
+	}
 
 }
