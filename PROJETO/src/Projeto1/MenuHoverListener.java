@@ -10,7 +10,7 @@
  *
  * This code illustrates the use of MouseAdapter interfaces to change the menu color on mouse hover
  * *********************************************************************************/
-
+package Projeto1;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
