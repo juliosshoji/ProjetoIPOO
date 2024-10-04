@@ -15,6 +15,8 @@ package Projeto1;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Insets;
 
 import javax.swing.BorderFactory;
@@ -33,45 +35,35 @@ public class MainWindows {
     private JFrame frame;
     private JTextArea textArea;
     private JPanel textPanel;
-    private BackgroundAnimator backgroundanimator;
+    protected BackgroundAnimator backgroundanimator;
 
     public void createAndShowGUI() {
-        // Cria o frame principal
         frame = new JFrame("SI400 - Programação Orientada a Objetos II");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 400);
+        frame.setSize(1280, 720);
         frame.setLayout(new BorderLayout());
 
-        // Definir a cor de fundo do frame
         frame.getContentPane().setBackground(Color.PINK);
-
-        // Chame createTextArea() antes de configurar os menus para garantir que textArea seja inicializada
         
         createTextArea();
         createMenuBar();
         createStatusBar();
-        // Exibe o frame
         frame.setVisible(true);
     }
 
     private void createMenuBar() {
-        // Cria a barra de menus
         JMenuBar menuBar = new JMenuBar();
 
-        // Cria os menus
         JMenu menuArquivo = new JMenu("Arquivo");
         JMenu menuConfiguracao = new JMenu("Configuração");
         JMenu menuAjuda = new JMenu("Ajuda");
 
-        // Adiciona os menus à barra de menus
         menuBar.add(menuArquivo);
         menuBar.add(menuConfiguracao);
         menuBar.add(menuAjuda);
 
-        // Adiciona itens de menu e seus ouvintes
         addMenuItems(menuArquivo, menuAjuda, menuConfiguracao);
 
-        // Define a barra de menus no frame
         frame.setJMenuBar(menuBar);
     }
 
@@ -80,7 +72,6 @@ public class MainWindows {
         JMenuItem fecharArquivo = new JMenuItem("Fechar arquivo");
         JMenuItem sair = new JMenuItem("Sair");
 
-        // Certifique-se de que textArea foi inicializada antes de passar para o OpenFileActionListener
         abrirArquivo.addActionListener(new OpenFileListener(frame, textArea));
         fecharArquivo.addActionListener(e -> textArea.setText(""));
         sair.addActionListener(new ExitListener(frame));
@@ -90,7 +81,6 @@ public class MainWindows {
         menuArquivo.addSeparator();
         menuArquivo.add(sair);
         
-        //Adicionando menuConfig Items
     	JMenuItem speedItem = new JMenuItem("Configurar Velocidade");
 		JMenuItem colorItem = new JMenuItem("Configurar Cor");
 		JMenuItem patternItem = new JMenuItem("Configurar Padrão");
@@ -109,15 +99,28 @@ public class MainWindows {
         textArea.setLineWrap(true);
         textArea.setMargin(new Insets(10, 15, 10, 15));
         textArea.setBackground(Color.WHITE);
-
-        this.textPanel = new JPanel();
+        
+        this.backgroundanimator = new BackgroundAnimator(
+	        new JPanel() {;
+		    	private static final long serialVersionUID = 1L;
+				@Override
+		    	protected void paintComponent(Graphics g) {
+		    		super.paintComponent(g);
+		    		Graphics2D g2d = (Graphics2D) g;
+		    		
+		    		backgroundanimator.drawBackground(g2d);
+		    	}
+		    }
+	     );
+        
+        this.textPanel = this.backgroundanimator.getPanel();
+       
         textPanel.setLayout(new BorderLayout());
-        textPanel.setBackground(frame.getContentPane().getBackground());
+        
+        this.backgroundanimator.startBackgroundAnimation();
+        
         textPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         textPanel.add(new JScrollPane(textArea), BorderLayout.CENTER);
-
-        this.backgroundanimator = new BackgroundAnimator(this.textPanel);
-
         
         frame.add(textPanel, BorderLayout.CENTER);
     }
