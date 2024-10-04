@@ -52,7 +52,7 @@ public class ConfiguracaoMouseListener implements ActionListener {
             switch (speed) {
                 case "Lento":
                 	this.backgroundanimator.setAnimationSpeedString("Lento");
-                	this.backgroundanimator.setSpeed(80);
+                	this.backgroundanimator.setSpeed(80);     	
                     break;
                 case "Médio":
                 	this.backgroundanimator.setAnimationSpeedString("Médio");
@@ -60,7 +60,7 @@ public class ConfiguracaoMouseListener implements ActionListener {
                     break;
                 case "Rápido":
                 	this.backgroundanimator.setAnimationSpeedString("Rápido");
-                	this.backgroundanimator.setSpeed(20);
+                	this.backgroundanimator.setSpeed(20);   
                     break;
             }
         }

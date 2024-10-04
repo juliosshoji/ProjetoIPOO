@@ -29,6 +29,7 @@ public class BackgroundAnimator implements Runnable {
     private Random random = new Random();
     private String animationSpeedString;
     private boolean alternateColors = false;    
+    private int cyclecounter = 0;
     
     public BackgroundAnimator(JPanel panel) {
         this.panel = panel;
@@ -70,10 +71,14 @@ public class BackgroundAnimator implements Runnable {
     @Override
     public void run() {
         while (running) {
-            panel.repaint();
+            this.panel.repaint();
             
-            this.alternateColors = !this.alternateColors;
-
+            this.cyclecounter++;
+            
+            if(this.cyclecounter >= this.animationSpeed/40) {
+            	this.alternateColors = !this.alternateColors;
+            	this.cyclecounter = 0;
+            }
             try {
                 Thread.sleep(animationSpeed);
             } catch (InterruptedException e) {
@@ -129,7 +134,7 @@ public class BackgroundAnimator implements Runnable {
     }
 
     private void drawGeometricPattern(Graphics2D g2d) {
-        int squareSize = 50;
+        int squareSize = 100;
         for (int y = 0; y < panel.getHeight(); y += squareSize) {
             for (int x = 0; x < panel.getWidth(); x += squareSize) {
                 if ((x / squareSize + y / squareSize) % 2 == 0) {
@@ -158,13 +163,9 @@ public class BackgroundAnimator implements Runnable {
         g2d.fillRect(0, 0, panel.getWidth(), panel.getHeight());
     }
 
-
-
 	public String getAnimationSpeedString() {
 		return animationSpeedString;
 	}
-
-
 
 	public void setAnimationSpeedString(String animationSpeedString) {
 		this.animationSpeedString = animationSpeedString;
