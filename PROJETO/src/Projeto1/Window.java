@@ -37,68 +37,68 @@ public class Window {
 	private JPanel textPanel;
 	protected BackgroundAnimator backgroundanimator;
 
-	public Window(){
+	public Window() {
 		createAndShowGUI();
 	}
 
-    public void createAndShowGUI() {
-        frame = new JFrame("SI400 - Programação Orientada a Objetos II");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1280, 720);
-        frame.setLayout(new BorderLayout());
+	public void createAndShowGUI() {
+		frame = new JFrame("SI400 - Programação Orientada a Objetos II");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(1280, 720);
+		frame.setLayout(new BorderLayout());
 
-        frame.getContentPane().setBackground(Color.PINK);
+		frame.getContentPane().setBackground(Color.PINK);
 
-        createTextArea();
-        createMenuBar();
-        createStatusBar();
+		createTextArea();
+		createMenuBar();
+		createStatusBar();
 
-        frame.setVisible(true);
-    }
+		frame.setVisible(true);
+	}
 
-    private void createMenuBar() {
-        JMenuBar menuBar = new JMenuBar();
+	private void createMenuBar() {
+		JMenuBar menuBar = new JMenuBar();
 
-        JMenu archiveMenu = new JMenu("Arquivo");
-        JMenu configurationMenu = new JMenu("Configuração");
-        JMenu helpMenu = new JMenu("Ajuda");
+		JMenu archiveMenu = new JMenu("Arquivo");
+		JMenu configurationMenu = new JMenu("Configuração");
+		JMenu helpMenu = new JMenu("Ajuda");
 
-        menuBar.add(archiveMenu);
-        menuBar.add(configurationMenu);
-        menuBar.add(helpMenu);
+		menuBar.add(archiveMenu);
+		menuBar.add(configurationMenu);
+		menuBar.add(helpMenu);
 
-        addMenuItems(archiveMenu, helpMenu, configurationMenu);
+		addMenuItems(archiveMenu, helpMenu, configurationMenu);
 
-        // Define a barra de menus no frame
-        frame.setJMenuBar(menuBar);
-    }
+		// Define a barra de menus no frame
+		frame.setJMenuBar(menuBar);
+	}
 
-    private void addMenuItems(JMenu archiveMenu, JMenu helpMenu, JMenu configurationMenu) {
-        JMenuItem openArchive = new JMenuItem("Abrir arquivo");
-        JMenuItem closeArchive = new JMenuItem("Fechar arquivo");
-        JMenuItem exit = new JMenuItem("Sair");
+	private void addMenuItems(JMenu archiveMenu, JMenu helpMenu, JMenu configurationMenu) {
+		JMenuItem openArchive = new JMenuItem("Abrir arquivo");
+		JMenuItem closeArchive = new JMenuItem("Fechar arquivo");
+		JMenuItem exit = new JMenuItem("Sair");
 
-        openArchive.addActionListener(new OpenFileListener(frame, textArea));
-        closeArchive.addActionListener(e -> textArea.setText(""));
-        exit.addActionListener(new ExitListener(frame));
+		openArchive.addActionListener(new OpenFileListener(frame, textArea));
+		closeArchive.addActionListener(e -> textArea.setText(""));
+		exit.addActionListener(new ExitListener(frame));
 
-        archiveMenu.add(openArchive);
-        archiveMenu.add(closeArchive);
-        archiveMenu.addSeparator();
-        archiveMenu.add(exit);
+		archiveMenu.add(openArchive);
+		archiveMenu.add(closeArchive);
+		archiveMenu.addSeparator();
+		archiveMenu.add(exit);
 
-        JMenuItem help = new JMenuItem("Ajuda");
-        JMenuItem about = new JMenuItem("Sobre");
+		JMenuItem help = new JMenuItem("Ajuda");
+		JMenuItem about = new JMenuItem("Sobre");
 
-        help.addActionListener(new HelpMouseListener(this.frame));
-        about.addActionListener(e -> JOptionPane.showMessageDialog(frame,
-                "Versão 1.0\nAutores:\nFernanda R. G. Mansano - 257088\nJúlio S. Z. Kobayashi - 245708\nMatheus Cirillo - 171535\nStephani S. Miler - 237152\nVictor C. da Silva - 255821",
-                "Sobre", JOptionPane.INFORMATION_MESSAGE));
+		help.addActionListener(new HelpMouseListener(this.frame));
+		about.addActionListener(e -> JOptionPane.showMessageDialog(frame,
+				"Versão 1.0\nAutores:\nFernanda R. G. Mansano - 257088\nJúlio S. Z. Kobayashi - 245708\nMatheus Cirillo - 171535\nStephani S. Miler - 237152\nVictor C. da Silva - 255821",
+				"Sobre", JOptionPane.INFORMATION_MESSAGE));
 
-        helpMenu.add(help);
-        helpMenu.add(about);
-        
-        JMenuItem speedItem = new JMenuItem("Configurar Velocidade");
+		helpMenu.add(help);
+		helpMenu.add(about);
+
+		JMenuItem speedItem = new JMenuItem("Configurar Velocidade");
 		JMenuItem colorItem = new JMenuItem("Configurar Cor");
 		JMenuItem patternItem = new JMenuItem("Configurar Padrão");
 
@@ -109,10 +109,10 @@ public class Window {
 		configurationMenu.add(speedItem);
 		configurationMenu.add(colorItem);
 		configurationMenu.add(patternItem);
-    }
+	}
 
-    private void createTextArea() {
-    	textArea = new JTextArea();
+	private void createTextArea() {
+		textArea = new JTextArea();
 		textArea.setLineWrap(true);
 		textArea.setMargin(new Insets(10, 15, 10, 15));
 		textArea.setBackground(Color.WHITE);
@@ -139,11 +139,11 @@ public class Window {
 		textPanel.add(new JScrollPane(textArea), BorderLayout.CENTER);
 
 		frame.add(textPanel, BorderLayout.CENTER);
-    }
+	}
 
-    private void createStatusBar() {
-        JLabel statusBar = new JLabel("PROJETO 1 - GUI");
-        statusBar.setHorizontalAlignment(SwingConstants.CENTER);
-        frame.add(statusBar, BorderLayout.SOUTH);
-    }
+	private void createStatusBar() {
+		JLabel statusBar = new JLabel("PROJETO 1 - GUI");
+		statusBar.setHorizontalAlignment(SwingConstants.CENTER);
+		frame.add(statusBar, BorderLayout.SOUTH);
+	}
 }
