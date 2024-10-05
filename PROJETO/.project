@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/Projeto1/imagem.jpeg</name>
+			<type>1</type>
+			<location>/home/juliosshoji/git/ProjetoIPOO/PROJETO/src/Projeto1/imagem.jpeg</location>
+		</link>
+	</linkedResources>
 </projectDescription>
