@@ -80,7 +80,7 @@ public class Window {
 
 		openArchive.addActionListener(new OpenFileListener(frame, textArea));
 		closeArchive.addActionListener(e -> textArea.setText(""));
-		exit.addActionListener(new ExitListener(frame));
+		exit.addActionListener(new ExitListener());
 
 		archiveMenu.add(openArchive);
 		archiveMenu.add(closeArchive);
