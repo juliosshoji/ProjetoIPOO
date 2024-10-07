@@ -1,3 +1,15 @@
+/* ********************************************************************************
+ * Group Noite 5
+ * University of Campinas
+ * School of Technology
+ *
+ * September, 24th, 2024.
+ * Version 1.00
+ *
+ * Project 1 GUI  (Object Oriented Programming II - Si400)
+ *
+ * This code illustrates the use of a user help image
+ * *********************************************************************************/
 package Projeto1;
 
 import java.awt.Graphics;
